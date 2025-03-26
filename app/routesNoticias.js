@@ -92,7 +92,7 @@ module.exports = function (app, connection, passport) {
 
   });
 
-  app.get('/list-transparente-inicial', general.isLoggedIn, function (req, res) {
+  app.get('/list-transparente-inicial'/*, general.isLoggedIn*/, function (req, res) {
     let idTipoNoticia = 4;
     let id_categoria_personal = req.query.id_categoria_personal || null;
     let id_categoria_transparente = req.query.id_categoria_transparente || null;
@@ -114,7 +114,7 @@ module.exports = function (app, connection, passport) {
   });
 
 
-  app.get('/list-transparente-byquery', general.isLoggedIn, function (req, res) {
+  app.get('/list-transparente-byquery'/*, general.isLoggedIn*/, function (req, res) {
     let idTipoNoticia = 4;
     let id_categoria_personal = req.query.id_categoria_personal || null;
     let id_categoria_transparente = req.query.id_categoria_transparente || null;
@@ -136,7 +136,7 @@ module.exports = function (app, connection, passport) {
   });
 
   
-  app.get('/list-videos-byquery', general.isLoggedIn, function (req, res) {
+  app.get('/list-videos-byquery'/*, general.isLoggedIn*/, function (req, res) {
     let idTipoNoticia = 5;
     let id_categoria_personal = req.query.id_categoria_personal || null;
     let id_categoria_transparente = req.query.id_categoria_transparente || null;
