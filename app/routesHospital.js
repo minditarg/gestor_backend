@@ -933,7 +933,8 @@ module.exports = function (app,connection, passport) {
 
 	app.get('/list-patologia-consulta/:idConsulta', general.isLoggedIn, function (req, res) {
 		var id = req.params.idConsulta;
-		connection.query("SELECT p.* FROM patologias p LEFT JOIN especies e ON e.id = p.id_especie LEFT JOIN pacientes pa ON pa.id_especie = e.id	LEFT JOIN consultas c ON c.id_paciente = pa.id	WHERE p.estado = 1 AND c.id = ?	OR e.id = 5 ORDER BY p.descripcion;", [id],function (err, result) {
+		// connection.query("SELECT p.* FROM patologias p LEFT JOIN especies e ON e.id = p.id_especie LEFT JOIN pacientes pa ON pa.id_especie = e.id	LEFT JOIN consultas c ON c.id_paciente = pa.id	WHERE p.estado = 1 AND c.id = ?	OR e.id = 5 ORDER BY p.descripcion;", [id],function (err, result) {
+			connection.query("SELECT p.* from consultas c inner join pacientes pa on c.id_paciente = pa.id inner join patologias p on p.id_especie = pa.id_especie where p.estado = 1 and c.id = ? ORDER BY p.descripcion;", [id],function (err, result) {
 			if (err) {
 				return res.json({ success: 0, error_msj: err });
 			}
