@@ -26,6 +26,13 @@ module.exports = function (app,connection, passport) {
 	// 	res.json({ success: 3, error_msj: "no esta autenticado" });
 	// }
 
+	function formatFecha(fecha) {
+    if (!fecha) return null;
+    const d = new Date(fecha);
+    return d.toISOString().slice(0, 19).replace('T', ' ');
+}
+
+
     /********************************* */
     /*CLIENTES*/
     /********************************* */
@@ -233,8 +240,8 @@ module.exports = function (app,connection, passport) {
 			let id_sexo = req.body.id_sexo || null;
 			let castrado = req.body.castrado || null;
 			let notas = req.body.notas || null; 
-			let fecha_nacimiento = req.body.fecha_nacimiento || null; 
-			let fecha_adopcion = req.body.fecha_adopcion || null;
+			let fecha_nacimiento = formatFecha(req.body.fecha_nacimiento) || null; 
+			let fecha_adopcion = formatFecha(req.body.fecha_adopcion) || null;
 			let id_alimentacion = req.body.id_alimentacion || null;
 			let id_habitos = req.body.id_habitos || null;
 			let id_mascotas = req.body.id_mascotas || null;
